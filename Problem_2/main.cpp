@@ -46,4 +46,6 @@ int main()
 			printf("%s %d %d\n", buf[i].name, buf[i].age, buf[i].score);
 		}
 	}
+
+	return 0;
 }
