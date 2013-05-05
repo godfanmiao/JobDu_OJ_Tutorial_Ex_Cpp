@@ -3,18 +3,17 @@
 int main()
 {
 	freopen("input.txt", "r", stdin);
-	int n;
 
-	while(scanf("%d", &n) != EOF)
+	int h;
+	while(scanf("%d", &h) != EOF)
 	{
-		for(int m = 2 * (n - 1); m >= 0; m -= 2)
+		for(int i = 1; i <= h; i++)
 		{
-			for(int i = 1; i <= m; i++)
+			for(int j = 2 * (h - i); j > 0; j--)
 			{
 				printf(" ");
 			}
-
-			for(int j = 1; j <= 2 * (n - 1) + n - m; j++)
+			for(int k = h + (i - 1) * 2; k > 0; k--)
 			{
 				printf("*");
 			}
@@ -22,6 +21,5 @@ int main()
 			printf("\n");
 		}
 	}
-
 	return 0;
 }
