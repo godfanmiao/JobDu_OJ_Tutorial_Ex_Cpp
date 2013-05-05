@@ -1,37 +1,35 @@
 #include <stdio.h>
-int buf[1000000];
 
 int main()
 {
 	freopen("input.txt", "r", stdin);
-
-	int book[201];
+	int buf[201];
+	int score[201];
 
 	int n, m;
-
 	while(scanf("%d%d", &n, &m) != EOF)
 	{
-		for(int i = 0; i <= 200; i++)
-			book[i] = 0;
-
-		for(int i = 0; i < n; i++)
+		for(int i = 1; i <= m; i++)
 		{
-			scanf("%d", &buf[i]);
+			score[i] = 0;
 		}
 
-		for(int i = 0; i < n; i++)
+		for(int i = 1; i <= n; i++)
 		{
-			book[buf[i]] ++;
+			int tmp;
+			scanf("%d", &tmp);
+			buf[i] = tmp;
+			score[tmp] ++;
 		}
 
-		for(int i = 0; i < n; i++)
+		for(int i = 1; i <= n; i++)
 		{
-			int ans = book[buf[i]] - 1;
-			if(ans == 0)
+			if(score[buf[i]] == 1)
 				printf("BeiJu\n");
 			else
-				printf("%d\n", ans);
+				printf("%d\n", score[buf[i]] - 1);
 		}
 	}
+
 	return 0;
 }
