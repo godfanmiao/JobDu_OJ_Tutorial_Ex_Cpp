@@ -3,13 +3,12 @@
 
 #define ISYEAP(x) x % 100 != 0 && x % 4 == 0 || x % 400 == 0 ? 1 : 0
 
-
 int dayOfMonth[13][2] = 
 {
-	0, 0,
+	0, 0, 
 	31, 31,
 	28, 29,
-	31, 31,
+	31, 31, 
 	30, 30,
 	31, 31,
 	30, 30,
@@ -23,15 +22,14 @@ int dayOfMonth[13][2] =
 
 char monthName[13][30] = 
 {
-
-	"", 
+	"",
 	"January", 
-	"February",
+	"February", 
 	"March", 
 	"April", 
 	"May", 
 	"June", 
-	"July",
+	"July", 
 	"August", 
 	"September", 
 	"October", 
@@ -41,18 +39,22 @@ char monthName[13][30] =
 
 char weekName[7][30] = 
 {
-	"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+	"Sunday", 
+	"Monday", 
+	"Tuesday", 
+	"Wednesday", 
+	"Thursday", 
+	"Friday", 
+	"Saturday"
 };
-
 
 struct Date
 {
-	int year, month, day;
+	int day, month, year;
 
 	void nextDay()
 	{
 		day ++;
-
 		if(day > dayOfMonth[month][ISYEAP(year)])
 		{
 			day = 1;
@@ -61,49 +63,44 @@ struct Date
 
 		if(month > 12)
 		{
-			month = 1;
 			year ++;
+			month = 1;
 		}
-
 	}
 };
 
-int buf[3001][13][32];
+int buf[5001][13][32];
 
 int main()
 {
 	freopen("input.txt", "r", stdin);
 
-	Date tmp;
-	tmp.year = 0; 
-	tmp.month = 1;
-	tmp.day = 1;
 	int cnt = 0;
+	Date tmp;
+	tmp.day = 1;
+	tmp.month = 1;
+	tmp.year = 0;
 
-	while(tmp.year != 3001)
+	while(tmp.year != 5001)
 	{
-		buf[tmp.year][tmp.month][tmp.day] = cnt;
+		buf[tmp.year][tmp.month][tmp.day] = cnt ++;
 		tmp.nextDay();
-		cnt ++;
 	}
 
-	int year, day, month;
+	int day, year;
 	char monthStr[30];
+
 	while(scanf("%d%s%d", &day, &monthStr, &year) != EOF)
 	{
-		for(int i = 1; i <= 12; i++)
+		int month = 1;
+
+		while(strcmp(monthName[month], monthStr) != 0)
 		{
-			if(strcmp(monthName[i], monthStr) == 0)
-			{
-				month = i;
-				break;
-			}
+			month ++;
 		}
 
-		int ans = ((buf[year][month][day] - buf[2013][4][22] + 1) % 7 + 7) % 7;
+		printf("%s\n", weekName[((buf[year][month][day] - buf[2013][5][5]) % 7 + 7) % 7]);
 
-		printf("%s\n", weekName[ans]);
 	}
-
 	return 0;
 }
