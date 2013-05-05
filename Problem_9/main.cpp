@@ -42,7 +42,7 @@ struct Date
 };
 
 
-int buf[3001][13][32];
+int buf[5001][13][32];
 
 int main()
 {
