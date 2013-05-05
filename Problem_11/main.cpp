@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 #define OFFSET 500000
 
 bool buf[1000001];
@@ -16,6 +17,9 @@ int main()
 			buf[i + OFFSET] = false;
 		}
 
+		if(n < m)
+			m = n;
+
 		for(int i = 0; i < n; i++)
 		{
 			int tmp;
@@ -23,23 +27,18 @@ int main()
 			buf[tmp + OFFSET] = true;
 		}
 
-		if (m > n)
-			m = n;
-
-		for(int i = 500000; i >= -500000 && m > 0; i--)
+		for(int i = 500000; m > 0 && i >= -500000; i--)
 		{
-			if(buf[i + OFFSET])
+			if(buf[i + OFFSET] == true)
 			{
-				m--;
-				printf("%d", i);
-				if(m == 0 || i == -500000)
-				{
-					printf("\n");
-				}
+				if(m == 1)
+					printf("%d\n", i);
 				else
-					printf(" ");
+					printf("%d ", i);
+				m --;
 			}
 		}
+
 	}
 
 	return 0;
