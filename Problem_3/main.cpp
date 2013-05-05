@@ -1,20 +1,19 @@
 #include <stdio.h>
 #include <algorithm>
+
 using namespace std;
 
 int main()
 {
 	freopen("input.txt", "r", stdin);
+	int buf[1000];
 
 	int n;
-	int buf[1001];
 
 	while(scanf("%d", &n) != EOF)
 	{
 		for(int i = 0; i < n; i++)
-		{
 			scanf("%d", &buf[i]);
-		}
 
 		sort(buf, buf + n);
 
@@ -22,21 +21,20 @@ int main()
 
 		if(n - 1 == 0)
 		{
-			printf("%d\n", -1);
+			printf("-1\n");
+			continue;
 		}
-		else
+				
+		for(int i = 0; i < n - 1; i++)
 		{
-			for(int i = 0; i < n - 1; i++)
+			if(i == n - 2)
 			{
-				if(i == n - 2)
-				{
-					printf("%d\n", buf[i]);
-				}
-				else
-					printf("%d ", buf[i]);
+				printf("%d\n", buf[i]);
 			}
+			else
+				printf("%d ", buf[i]);
 		}
-	}
 
+	}
 	return 0;
 }
