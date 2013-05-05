@@ -3,8 +3,9 @@
 int main()
 {
 	freopen("input.txt", "r", stdin);
+
 	int n;
-	int buf[110];
+	int buf[100];
 
 	while(scanf("%d", &n) != EOF)
 	{
@@ -15,19 +16,22 @@ int main()
 
 		for(int i = 0; i < n; i++)
 		{
-			for(int j = i; j > 0 && buf[j] < buf[j - 1]; j--)
+			for(int j = 0; j < n - 1 - i; j++)
 			{
-				int tmp = buf[j - 1];
-				buf[j - 1] = buf[j];
-				buf[j] = tmp;
+				if(buf[j] > buf[j + 1])
+				{
+					int tmp = buf[j];
+					buf[j] = buf[j + 1];
+					buf[j + 1] = tmp;
+				}
 			}
 		}
 
 		for(int i = 0; i < n; i++)
-		{
 			printf("%d ", buf[i]);
-		}
 
 		printf("\n");
 	}
+
+	return 0;
 }
