@@ -6,9 +6,9 @@ using namespace std;
 int main()
 {
 	freopen("input.txt", "r", stdin);
-	int buf[1000];
 
 	int n;
+	int buf[1000];
 
 	while(scanf("%d", &n) != EOF)
 	{
