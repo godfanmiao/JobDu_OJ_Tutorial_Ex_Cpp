@@ -1,40 +1,37 @@
 #include <stdio.h>
 
-bool buf[10001];
+bool trees[10001];
 
 int main()
 {
 	freopen("input.txt", "r", stdin);
 
-	int L, M;
-
-	while(scanf("%d%d", &L, &M) != EOF)
+	int l, m;
+	while(scanf("%d%d", &l, &m) != EOF)
 	{
-		for(int i = 0; i <= L; i++)
+		for(int i = 0; i <= l; i++)
 		{
-			buf[i] = true;
+			trees[i] = true;
 		}
 
-		for(int i = 0; i < M; i++)
+		int start, end;
+
+		for(int i = 1; i <= m; i++)
 		{
-			int start, end;
 			scanf("%d%d", &start, &end);
-
 			for(int j = start; j <= end; j++)
-			{
-				buf[j] = false;
-			}
+				trees[j] = false;
 		}
 
-		int count = 0;
-		for(int i = 0; i <= L; i++)
+		int cnt = 0;
+
+		for(int i = 0; i <= l; i++)
 		{
-			if(buf[i])
-				count ++;
+			if(trees[i] == true)
+				cnt ++;
 		}
 
-		printf("%d\n", count);
+		printf("%d\n", cnt);
 	}
-
 	return 0;
 }
