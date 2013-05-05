@@ -20,9 +20,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="problem_2.txt">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="input.txt">
       <Filter>Resource Files</Filter>
     </None>
