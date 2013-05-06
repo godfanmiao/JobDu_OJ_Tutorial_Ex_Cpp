@@ -3,65 +3,53 @@
 int main()
 {
 	freopen("input.txt", "r", stdin);
+
 	int n;
 	int buf[80];
+	
+	int index[80];
 
 	while(scanf("%d", &n) != EOF)
 	{
-		while(n-- > 0)
+		for(int i = 0; i < n; i++)
 		{
-			int m;
-			scanf("%d", &m);
+			int k;
+			scanf("%d", &k);
 
-			for(int i = 0; i < m; i++)
+			for(int j = 0; j < k; j++)
 			{
-				scanf("%d", &buf[i]);
+				scanf("%d", &buf[j]);
 			}
-			bool first = true;
-			for(int i = 0; i < m; i++)
+			int size = 0;
+
+			for(int j = 0; j < k; j++)
 			{
-				if(i == 0)
+				if(j == 0)
 				{
-					if(buf[i + 1] != buf[i])
-					{
-						if(first)
-						{
-							first = false;
-							printf("%d", i);
-						}
-						else
-							printf(" %d", i);
-					}
+					if(buf[j] != buf[j + 1])
+						index[size ++] = j;
 				}
-				else if(i == m - 1)
+				else if(j == k - 1)
 				{
-					if(buf[i - 1] != buf[i])
-					{
-						if(first)
-						{
-							first = false;
-							printf("%d", i);
-						}
-						else
-							printf(" %d", i);
-					}
+					if(buf[j - 1] != buf[j])
+						index[size ++] = j;
 				}
 				else
 				{
-					if(buf[i - 1] < buf[i] && buf[i] > buf[i + 1] || buf[i - 1] > buf[i] && buf[i] < buf[i + 1])
-					{
-						if(first)
-						{
-							first = false;
-							printf("%d", i);
-						}
-						else
-							printf(" %d", i);
-					}
+					if(buf[j - 1] < buf[j] && buf[j] > buf[j + 1] || buf[j - 1] > buf[j] && buf[j] < buf[j + 1])
+						index[size ++] = j;
 				}
 			}
 
-			printf("\n");
+			for(int j = 0; j < size; j++)
+			{
+				if(j == size - 1)
+					printf("%d\n", index[j]);
+				else
+					printf("%d ", index[j]); 
+			}
 		}
 	}
+
+	return 0;
 }
