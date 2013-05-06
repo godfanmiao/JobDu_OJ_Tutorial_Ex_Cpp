@@ -1,21 +1,20 @@
 #include <stdio.h>
 #include <algorithm>
-using namespace std;
 
-long long buf[300];
+using namespace std;
 
 int main()
 {
 	freopen("input.txt", "r", stdin);
+
+	int buf[100];
 
 	int n, m;
 
 	while(scanf("%d", &n) != EOF)
 	{
 		for(int i = 0; i < n; i++)
-		{
-			scanf("%lld", &buf[i]);
-		}
+			scanf("%d", &buf[i]);
 
 		sort(buf, buf + n);
 
@@ -23,11 +22,11 @@ int main()
 
 		for(int i = 0; i < m; i++)
 		{
-			long long x;
-			scanf("%lld", &x);
+			int x;
+			scanf("%d", &x);
 
-			int ans = -1;
 			int lo = 0, hi = n - 1;
+			int ans = -1;
 
 			while(lo <= hi)
 			{
@@ -38,12 +37,10 @@ int main()
 					ans = mid;
 					break;
 				}
-				else if(buf[mid] < x)
-				{
-					lo = mid + 1;
-				}
-				else
+				else if(buf[mid] > x)
 					hi = mid - 1;
+				else
+					lo = mid + 1;
 			}
 
 			if(ans == -1)
@@ -51,7 +48,7 @@ int main()
 			else
 				printf("YES\n");
 		}
-	}
 
+	}
 	return 0;
 }
