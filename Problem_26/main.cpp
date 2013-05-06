@@ -1,22 +1,21 @@
 #include <stdio.h>
-#include <algorithm>
 #include <stack>
+#include <string.h>
+
 using namespace std;
 
-char str1[110];
-char str2[110];
-stack<int> S;
 int main()
 {
 	freopen("input.txt", "r", stdin);
 
-	while(gets(str1))
+	char str1[110];
+	char str2[110];
+	stack<int> S;
+
+	while(scanf("%s", str1) != EOF)
 	{
 		while(!S.empty())
-		{
 			S.pop();
-		}
-
 		int i;
 		for(i = 0; str1[i] != '\0'; i++)
 		{
@@ -31,8 +30,8 @@ int main()
 					str2[i] = '?';
 				else
 				{
-					str2[i] = ' ';
 					S.pop();
+					str2[i] = ' ';
 				}
 			}
 			else
@@ -41,17 +40,16 @@ int main()
 			}
 		}
 
+		str2[i] = '\0';
+
 		while(!S.empty())
 		{
 			str2[S.top()] = '$';
 			S.pop();
 		}
 
-		str2[i] = '\0';
-
 		puts(str1);
 		puts(str2);
 	}
-
 	return 0;
 }
